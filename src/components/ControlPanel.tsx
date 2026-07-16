@@ -31,7 +31,7 @@ function Slider({
 }) {
   return (
     <label className="block">
-      <div className="mb-1 flex justify-between text-sm text-gray-600">
+      <div className="mb-1 flex justify-between text-sm text-gray-600 dark:text-gray-300">
         <span>{label}</span>
         <span className="tabular-nums">{display}</span>
       </div>
@@ -52,17 +52,17 @@ export default function ControlPanel({ options, onChange }: Props) {
   return (
     <div className="space-y-5">
       <label className="block">
-        <div className="mb-1 text-sm text-gray-600">浮水印文字</div>
+        <div className="mb-1 text-sm text-gray-600 dark:text-gray-300">浮水印文字</div>
         <textarea
           value={options.text}
           onChange={(e) => onChange({ text: e.target.value })}
           rows={3}
-          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100"
         />
       </label>
 
       <div>
-        <div className="mb-1 text-sm text-gray-600">排列模式</div>
+        <div className="mb-1 text-sm text-gray-600 dark:text-gray-300">排列模式</div>
         <div className="grid grid-cols-2 gap-2">
           {MODES.map(([mode, label]) => (
             <button
@@ -72,7 +72,7 @@ export default function ControlPanel({ options, onChange }: Props) {
               className={`rounded-md border px-3 py-2 text-sm ${
                 options.mode === mode
                   ? 'border-blue-600 bg-blue-600 text-white'
-                  : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                  : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
               }`}
             >
               {label}
@@ -82,7 +82,7 @@ export default function ControlPanel({ options, onChange }: Props) {
       </div>
 
       <div>
-        <div className="mb-1 text-sm text-gray-600">文字顏色</div>
+        <div className="mb-1 text-sm text-gray-600 dark:text-gray-300">文字顏色</div>
         <div className="flex items-center gap-2">
           {PRESET_COLORS.map((color) => (
             <button
@@ -91,7 +91,9 @@ export default function ControlPanel({ options, onChange }: Props) {
               onClick={() => onChange({ color })}
               aria-label={`顏色 ${color}`}
               className={`h-7 w-7 rounded-full border ${
-                options.color === color ? 'ring-2 ring-blue-600 ring-offset-1' : 'border-gray-300'
+                options.color === color
+                  ? 'ring-2 ring-blue-600 ring-offset-1 dark:ring-offset-gray-800'
+                  : 'border-gray-300 dark:border-gray-600'
               }`}
               style={{ backgroundColor: color }}
             />
@@ -102,7 +104,7 @@ export default function ControlPanel({ options, onChange }: Props) {
             onChange={(e) => onChange({ color: e.target.value })}
             aria-label="自訂顏色"
             title="自訂顏色"
-            className="h-7 w-7 cursor-pointer rounded border border-gray-300"
+            className="h-7 w-7 cursor-pointer rounded border border-gray-300 dark:border-gray-600"
           />
         </div>
       </div>
