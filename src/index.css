@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+/* dark: variant 改由 <html> 上的 .dark class 控制，而非只跟系統設定 */
+@custom-variant dark (&:where(.dark, .dark *));
