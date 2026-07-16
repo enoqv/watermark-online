@@ -1,4 +1,4 @@
-import { useRef, useState, type ChangeEvent, type DragEvent } from 'react';
+import { useRef, useState, type ChangeEvent, type DragEvent, type KeyboardEvent } from 'react';
 
 interface Props {
   hasImage: boolean;
@@ -56,16 +56,27 @@ export default function ImageUploader({ hasImage, onImageLoad, onError }: Props)
     );
   }
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      inputRef.current?.click();
+    }
+  };
+
   return (
     <div
       onClick={() => inputRef.current?.click()}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label="選擇圖片"
       onDragOver={(e) => {
         e.preventDefault();
         setDragging(true);
       }}
       onDragLeave={() => setDragging(false)}
       onDrop={handleDrop}
-      className={`flex h-72 w-full max-w-xl cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed transition-colors ${
+      className={`flex h-72 w-full max-w-xl cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
         dragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300 bg-white hover:border-gray-400'
       }`}
     >

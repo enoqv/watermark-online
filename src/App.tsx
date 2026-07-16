@@ -24,7 +24,10 @@ export default function App() {
   // 預覽 canvas 本身就是原圖全解析度，直接輸出
   const handleDownload = () => {
     canvasRef.current?.toBlob((blob) => {
-      if (!blob) return;
+      if (!blob) {
+        setError('圖片輸出失敗，可能是圖片尺寸超過瀏覽器限制');
+        return;
+      }
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
