@@ -81,9 +81,9 @@ function drawTiledLines(
   const stepY = blockHeight + options.fontSize * options.lineHeight; // lineHeight 控制列與列的間距
 
   let row = 0;
-  for (let y = -radius; y <= radius + blockHeight; y += stepY, row++) {
+  for (let y = -radius; y <= radius + stepY; y += stepY, row++) {
     const offsetX = row % 2 === 0 ? 0 : stepX / 2;
-    for (let x = -radius - stepX; x <= radius; x += stepX) {
+    for (let x = -radius - stepX; x <= radius + stepX; x += stepX) {
       lines.forEach((line, i) => {
         ctx.fillText(line, x + offsetX, y - blockHeight / 2 + i * innerStep);
       });
