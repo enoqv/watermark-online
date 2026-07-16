@@ -30,7 +30,7 @@ export default function App() {
       a.href = url;
       a.download = 'watermarked.png';
       a.click();
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     }, 'image/png');
   };
 
