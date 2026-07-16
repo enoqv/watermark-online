@@ -2,3 +2,11 @@
 
 /* dark: variant 改由 <html> 上的 .dark class 控制，而非只跟系統設定 */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* 讓原生控制項（range 軌道、color picker、捲軸）跟隨主題 */
+:root {
+  color-scheme: light;
+}
+:root.dark {
+  color-scheme: dark;
+}
