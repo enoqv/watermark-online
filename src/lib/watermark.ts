@@ -83,7 +83,7 @@ function drawTiledLines(
   let row = 0;
   for (let y = -radius; y <= radius + blockHeight; y += stepY, row++) {
     const offsetX = row % 2 === 0 ? 0 : stepX / 2;
-    for (let x = -radius; x <= radius; x += stepX) {
+    for (let x = -radius - stepX; x <= radius; x += stepX) {
       lines.forEach((line, i) => {
         ctx.fillText(line, x + offsetX, y - blockHeight / 2 + i * innerStep);
       });
